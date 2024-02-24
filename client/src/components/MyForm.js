@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { socket } from "../socket";
+import { Chats } from "./Chats";
 
 export function MyForm(){
     const [roomId, setRoomId] = useState('')
@@ -15,10 +16,13 @@ export function MyForm(){
         })
     }
     return(
+        <div>
         <form onSubmit={onSubmit}>
             <input type="text" name="userName" placeholder="John Doe" onChange={event=> setUserName(event.target.value)}/>
             <input type="text" name="roomId" placeholder="Room ID" onChange={event=> setRoomId(event.target.value)}/>
             <button type="submit" disabled={isloading}>Join</button>
         </form>
+        <Chats socket={socket} roomId={roomId} username={userName}/>
+        </div>
     )
 }

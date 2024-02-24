@@ -24,6 +24,10 @@ io.on("connection", (socket)=>{// note that "connection" is all lower case
         socket.join(data)
         console.log(data.userName, "wants to join",data.roomId )
     })
+    socket.on("sending-msg",(data)=>{
+        console.log(data.userName,": ",data.msg)
+    }
+    )
     // When the user disconnects, print the id of that user
     socket.on("Disconnection", ()=>{
         console.log("The user", socket.id," just disconnected")
